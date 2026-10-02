@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RQ2 | AI Scientist tools in SE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="in"><div class="site">End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</div><h1>RQ2. Stage-level capabilities and limitations</h1></div></header>
+<nav aria-label="Pages"><div class="in"><a href="index.html">Home</a><a href="definition.html">Definition</a><a href="tool-selection.html">Tool selection</a><a href="benchmark.html">Benchmark</a><a href="evaluation.html">Evaluation</a><a href="rq1.html">RQ1</a><a href="rq2.html" aria-current="page">RQ2</a><a href="rq3.html">RQ3</a><a href="data.html">Data and code</a></div></nav>
+<main class="wrap"><section>
+
+  <h3>Literature review</h3>
+  <p>Fabrication is rare: 0.05 on average over 129 evaluated runs. The weakness is volume and coverage. The leading tools cite 6.6 to 6.9 references on average against 50 to 58 in the original papers, and recall is 0.03 to 0.06 for five of six tools. AI-Researcher produced no literature-review output.</p>
+  <figure><img src="assets/figures/fig5-literature.png" alt="Figure 5. Literature review metrics" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 5. Literature review metrics&lt;br&gt;add assets/figures/fig5-literature.png&lt;/div&gt;'"><figcaption>Figure 5. Literature review metrics</figcaption></figure>
+  <div class="todo">To add: the per-tool table behind Figure 5, with the number of evaluated runs.</div>
+
+  <h3>Idea generation</h3>
+  <div class="scroll"><table>
+    <tr><th>Tool</th><th class="n">Novelty</th><th class="n">Feasibility</th><th class="n">Clarity</th><th class="n">Composite</th></tr>
+    <tr><td>EvoScientist</td><td class="n">2.48</td><td class="n">3.39</td><td class="n">3.46</td><td class="n">2.85</td></tr>
+    <tr><td>DeepScientist</td><td class="n">2.96</td><td class="n">3.04</td><td class="n">3.43</td><td class="n">3.08</td></tr>
+    <tr><td>ARIS</td><td class="n">2.91</td><td class="n">3.33</td><td class="n">3.79</td><td class="n">3.20</td></tr>
+    <tr><td>Tiny-Scientist</td><td class="n">3.57</td><td class="n">3.00</td><td class="n">3.77</td><td class="n">3.42</td></tr>
+    <tr><td>AI Scientist-v2 †</td><td class="n">2.19</td><td class="n">2.70</td><td class="n">2.62</td><td class="n">2.35</td></tr>
+    <tr><td>AutoResearchClaw †</td><td class="n">2.07</td><td class="n">1.93</td><td class="n">2.07</td><td class="n">1.93</td></tr>
+  </table></div>
+  <p>† Runs without a separate idea artifact were scored on the task description, which lowers the mean. Scores are on a 1 to 5 scale.</p>
+
+  <p>Novelty level of the 103 ideas the tools generated themselves:</p>
+  <div class="bar tail"><span>Existing method</span><i style="width:9%"></i><span>9</span></div>
+  <div class="bar"><span>Incremental</span><i style="width:73%"></i><span>75</span></div>
+  <div class="bar tail"><span>Novel combination</span><i style="width:18%"></i><span>19</span></div>
+  <div class="bar tail"><span>Paradigm shift</span><i style="width:0.5%"></i><span>0</span></div>
+  <div class="todo">To add: one or two example ideas per level, with the judge's rationale.</div>
+
+  <h3>Experiment execution</h3>
+  <div class="scroll"><table>
+    <tr><th>Metric</th><th class="n">Evo&shy;Scientist</th><th class="n">Deep&shy;Scientist</th><th class="n">ARIS</th><th class="n">Tiny-Scientist</th><th class="n">AI Scientist-v2</th><th class="n">AutoResearch&shy;Claw</th><th class="n">AI-Researcher</th></tr>
+    <tr><td>Experiment success rate</td><td class="n">88%</td><td class="n">94%</td><td class="n">85%</td><td class="n">21%</td><td class="n">56%</td><td class="n">0%</td><td class="n">24%</td></tr>
+    <tr><td>Idea-to-code consistency (1 to 5)</td><td class="n">3.47</td><td class="n">3.14</td><td class="n">3.45</td><td class="n">1.33</td><td class="n">1.76</td><td class="n">1.22</td><td class="n">n/a</td></tr>
+    <tr><td>Setup coverage (0 to 1)</td><td class="n">0.90</td><td class="n">0.92</td><td class="n">0.93</td><td class="n">0.29</td><td class="n">0.73</td><td class="n">0.24</td><td class="n">0.95</td></tr>
+    <tr><td>Ablation coverage (0 to 1)</td><td class="n">0.36</td><td class="n">0.42</td><td class="n">0.66</td><td class="n">0.00</td><td class="n">0.48</td><td class="n">n/a</td><td class="n">n/a</td></tr>
+    <tr><td>Ablation pass rate</td><td class="n">38%</td><td class="n">22%</td><td class="n">28%</td><td class="n">0%</td><td class="n">27%</td><td class="n">n/a</td><td class="n">n/a</td></tr>
+    <tr><td>Significance test rate</td><td class="n">50%</td><td class="n">33%</td><td class="n">20%</td><td class="n">0%</td><td class="n">0%</td><td class="n">n/a</td><td class="n">n/a</td></tr>
+    <tr><td>Result-to-paper consistency (1 to 5)</td><td class="n">3.53</td><td class="n">3.32</td><td class="n">3.16</td><td class="n">1.43</td><td class="n">2.33</td><td class="n">n/a</td><td class="n">3.00</td></tr>
+    <tr><td>Concealment rate, lower is better</td><td class="n">24%</td><td class="n">21%</td><td class="n">11%</td><td class="n">29%</td><td class="n">53%</td><td class="n">n/a</td><td class="n">50%</td></tr>
+  </table></div>
+  <p>n/a: at most one evaluable run, or no paper.</p>
+
+  <h3>Case study: domain priors in the executor</h3>
+  <p>AI Scientist-v2's experiment agent runs prompts that hard-code a machine-learning workflow, and Tiny-Scientist defaults to a scikit-learn-style routine. On SE tasks such an executor reduces the study to a toy ML experiment. AI Scientist-v2 runs on synthetic data in 31 of 34 runs. In one Tiny-Scientist run, header-file splitting is implemented as a logistic regression on the Iris dataset.</p>
+  <div class="todo">To add: the prompt excerpt that hard-codes the ML workflow, and the task description plus generated code for the Iris case.</div>
+
+  <h3>The 22 confirmed concealment cases</h3>
+  <p>Manual inspection of the 114 runs with a paper confirmed 22 cases.</p>
+  <div class="scroll"><table>
+    <tr><th>Category</th><th class="n">Cases</th></tr>
+    <tr><td>Selective reporting: omitted failures, undisclosed downscaling, avoided baseline wins</td><td class="n">13</td></tr>
+    <tr><td>Slight misreport or overstatement</td><td class="n">4</td></tr>
+    <tr><td>Paper claims no experiments were run although results exist</td><td class="n">3</td></tr>
+    <tr><td>Fabricated numbers</td><td class="n">2</td></tr>
+  </table></div>
+  <div class="todo">To add: the case-by-case list (tool, task, what the result files show, what the paper reports).</div>
+</section></main>
+<footer>Companion website of a paper under double-anonymous review.</footer>
+</body>
+</html>

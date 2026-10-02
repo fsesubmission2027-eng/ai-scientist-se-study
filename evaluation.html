@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluation | AI Scientist tools in SE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="in"><div class="site">End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</div><h1>Evaluation framework</h1></div></header>
+<nav aria-label="Pages"><div class="in"><a href="index.html">Home</a><a href="definition.html">Definition</a><a href="tool-selection.html">Tool selection</a><a href="benchmark.html">Benchmark</a><a href="evaluation.html" aria-current="page">Evaluation</a><a href="rq1.html">RQ1</a><a href="rq2.html">RQ2</a><a href="rq3.html">RQ3</a><a href="data.html">Data and code</a></div></nav>
+<main class="wrap"><section>
+  <p>Each tool is evaluated at two levels: the overall output, and three key pipeline stages.</p>
+
+  <h3>Level 1. Overall quality</h3>
+  <div class="scroll"><table>
+    <tr><th>Metric</th><th>What it measures</th><th>How</th></tr>
+    <tr><td>Completeness</td><td>Whether the four expected artifacts exist: idea file, code, result files, paper PDF</td><td>Artifact inspection</td></tr>
+    <tr><td>Automated peer review</td><td>Quality of the generated manuscript</td><td>Stanford APR tool: overall score 1 to 10, seven sub-dimensions from −1 to +1</td></tr>
+    <tr><td>Conclusion alignment</td><td>Faithfulness to the original best paper</td><td>LLM extraction of claims and metrics from both papers; direction first, numbers only when comparable</td></tr>
+  </table></div>
+  <div class="todo">To add: the composite score formula and weights.</div>
+
+  <h3>Level 2. Literature review</h3>
+  <div class="scroll"><table>
+    <tr><th>Metric</th><th>Definition</th></tr>
+    <tr><td>Fabrication rate</td><td>Share of cited references that cannot be verified through Semantic Scholar, arXiv or manual review</td></tr>
+    <tr><td>Recall</td><td>Overlap with the original paper's reference list, divided by the size of that list</td></tr>
+    <tr><td>Recency</td><td>Share of cited references published within the last 3 years</td></tr>
+  </table></div>
+
+  <h3>Level 2. Idea generation</h3>
+  <p>An LLM judge scores each idea from 1 to 5 on three dimensions. Novelty is scored against a per-task Solution Space built from the key innovations of the original paper's references.</p>
+  <div class="scroll"><table>
+    <tr><th class="n">Score</th><th>Novelty</th><th>Feasibility</th><th>Clarity</th></tr>
+    <tr><td class="n">1</td><td>Existing: core method already in the Solution Space</td><td>Infeasible</td><td>Vague concept</td></tr>
+    <tr><td class="n">2</td><td>Trivial mashup of two existing techniques</td><td>Very high barrier: months of low-level tooling</td><td>Broken logic: method does not match the problem</td></tr>
+    <tr><td class="n">3</td><td>Incremental: fixes a specific limitation, paradigm unchanged</td><td>Moderate effort: a standard research workload</td><td>What, why and how present; key details vague</td></tr>
+    <tr><td class="n">4</td><td>Novel combination with a cross-domain insight</td><td>Low barrier: off-the-shelf libraries</td><td>Clear and concrete, proposal-ready</td></tr>
+    <tr><td class="n">5</td><td>Paradigm shift</td><td>Trivial: parameter changes or one API call</td><td>Rigorously precise, discusses limitations</td></tr>
+  </table></div>
+
+  <h3>Level 2. Experiment</h3>
+  <div class="scroll"><table>
+    <tr><th>Metric</th><th>Definition</th></tr>
+    <tr><td>Completion</td><td>The experiment ran to completion and produced valid results</td></tr>
+    <tr><td>Setup coverage</td><td>Share of the specified datasets, baselines and metrics actually used</td></tr>
+    <tr><td>Ablation</td><td>Whether an ablation covers the method components implied by the idea</td></tr>
+    <tr><td>Significance testing</td><td>Rule-based scan for confidence intervals, p-values and similar signals</td></tr>
+    <tr><td>Idea-to-code consistency</td><td>LLM judge, 1 to 5: does the code implement the claimed idea</td></tr>
+    <tr><td>Result-to-paper consistency</td><td>LLM judge, 1 to 5: do the result files match the paper</td></tr>
+    <tr><td>Negative-result concealment</td><td>Result files show outcomes that the paper omits or misrepresents; flagged automatically, then confirmed by manual inspection</td></tr>
+  </table></div>
+  <div class="todo">To add: the judge prompts (Solution Space extraction, idea scoring, claim alignment, consistency checks, concealment detection) and any human validation of the judges.</div>
+
+  <h3>Run configuration</h3>
+  <div class="scroll"><table>
+    <tr><th>Item</th><th>Setting</th></tr>
+    <tr><td>Sandbox</td><td>One isolated Docker container per run</td></tr>
+    <tr><td>Timeout</td><td>24 hours</td></tr>
+    <tr><td>Memory and CPU</td><td>16 to 32 GB, 4 to 8 cores</td></tr>
+    <tr><td>Backbone model</td><td>DeepSeek-V4-Pro through an OpenAI-compatible API, shared by all tools</td></tr>
+    <tr><td>Data</td><td>Tools must use the task's real data, not synthetic substitutes</td></tr>
+    <tr><td>Transient failures</td><td>Automatic resume within the same run</td></tr>
+    <tr><td>Logged per run</td><td>Framework name, return code, wall-clock time, token and dollar cost</td></tr>
+  </table></div>
+</section></main>
+<footer>Companion website of a paper under double-anonymous review.</footer>
+</body>
+</html>

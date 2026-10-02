@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tool selection | AI Scientist tools in SE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="in"><div class="site">End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</div><h1>Tool selection</h1></div></header>
+<nav aria-label="Pages"><div class="in"><a href="index.html">Home</a><a href="definition.html">Definition</a><a href="tool-selection.html" aria-current="page">Tool selection</a><a href="benchmark.html">Benchmark</a><a href="evaluation.html">Evaluation</a><a href="rq1.html">RQ1</a><a href="rq2.html">RQ2</a><a href="rq3.html">RQ3</a><a href="data.html">Data and code</a></div></nav>
+<main class="wrap"><section>
+  <p>We collected candidates through a systematic literature review plus a community repository survey, then applied four criteria in sequence.</p>
+
+  <div class="funnel" aria-label="Filtering funnel">
+    <div><b>29</b>candidates</div>
+    <div><b>26</b>after C1, open source</div>
+    <div><b>23</b>after C2, CS-applicable</div>
+    <div><b>12</b>after C3, all seven stages</div>
+    <div><b>7</b>after C4, fully automatic</div>
+  </div>
+
+  <h3>Step 1. Systematic literature review</h3>
+  <ul>
+    <li><b>Venues:</b> main tracks of NeurIPS, ICML, ICLR, ACL, EMNLP, AAAI, IJCAI</li>
+    <li><b>Period:</b> January 2024 to April 2026</li>
+    <li><b>Excluded:</b> workshop, findings and demo papers</li>
+    <li><b>Keywords:</b> derived from the top-10 Google Scholar results for "AI scientist" using KeyBERT keyphrase extraction</li>
+  </ul>
+  <p>15 candidate papers, 11 relevant after screening, covering 19 distinct tools.</p>
+  <div class="todo">To add: the full keyword groups, and the list of 15 screened papers.</div>
+
+  <h3>Step 2. Repository survey</h3>
+  <p>Venue search can miss open-source tools without a paper. We also surveyed the community-curated repository Awesome-Auto-Research-Tools, which added 10 tools after de-duplication.</p>
+
+  <h3>Step 3. Filtering criteria</h3>
+  <div class="scroll"><table>
+    <tr><th>Criterion</th><th>Requirement</th><th class="n">Excluded</th><th class="n">Left</th></tr>
+    <tr><td>C1. Open source</td><td>Implementation is publicly released</td><td class="n">3</td><td class="n">26</td></tr>
+    <tr><td>C2. CS-applicable</td><td>Domain-agnostic or compatible with CS tasks</td><td class="n">3</td><td class="n">23</td></tr>
+    <tr><td>C3. End-to-end</td><td>All seven stages autonomous</td><td class="n">11</td><td class="n">12</td></tr>
+    <tr><td>C4. Fully automatic</td><td>Runs from a natural-language topic and reference papers, with no proprietary service beyond the LLM API</td><td class="n">5</td><td class="n">7</td></tr>
+  </table></div>
+
+  <h3>Excluded tools</h3>
+  <div class="scroll"><table>
+    <tr><th>Tool</th><th>Failed</th><th>Reason</th></tr>
+    <tr><td>AIGS</td><td>C1</td><td>Closed source</td></tr>
+    <tr><td>AI co-scientist</td><td>C1</td><td>Access restricted</td></tr>
+    <tr><td>Zochi</td><td>C1</td><td>Closed source</td></tr>
+    <tr><td>Coscientist</td><td>C2</td><td>Chemistry-specific</td></tr>
+    <tr><td>RD-Agent</td><td>C2</td><td>Domain-specific</td></tr>
+    <tr><td>Biomni</td><td>C2</td><td>Biomedical-specific</td></tr>
+    <tr><td>ResearchAgent</td><td>C3</td><td>No Experiment stage</td></tr>
+    <tr><td>CycleResearcher</td><td>C3</td><td>No Experiment stage</td></tr>
+    <tr><td>SR-Scientist</td><td>C3</td><td>No Paper Writing stage</td></tr>
+    <tr><td>AutoResearch</td><td>C3</td><td>No Paper Writing stage</td></tr>
+    <tr><td>Agent Laboratory</td><td>C3</td><td>No Idea Generation stage</td></tr>
+    <tr><td>The AI Scientist (v1)</td><td>C4</td><td>Needs a human-authored code template</td></tr>
+    <tr><td>CodeScientist</td><td>C4</td><td>Needs a Modal cloud-execution account</td></tr>
+    <tr><td>InternAgent</td><td>C4</td><td>Needs externally supplied baseline code</td></tr>
+  </table></div>
+  <div class="todo">To add: the remaining 6 tools excluded by C3 and 2 excluded by C4, and the stage-coverage matrix for all 29 candidates (embed as a Google Sheet below this block).</div>
+
+  <h3>Selected tools</h3>
+  <div class="scroll"><table>
+    <tr><th>Tool</th><th>Release</th><th class="n">Stars</th><th class="n">Citations</th><th>Key mechanism</th></tr>
+    <tr><td>EvoScientist</td><td>2026.03</td><td class="n">5k</td><td class="n">41</td><td>Lightly-constrained skill/tool loop</td></tr>
+    <tr><td>DeepScientist</td><td>2025.09</td><td class="n">3.3k</td><td class="n">65</td><td>Quest/anchor-driven skill agent</td></tr>
+    <tr><td>ARIS</td><td>2026.03</td><td class="n">16.5k</td><td class="n">11</td><td>Skill-driven agent with cross-model review</td></tr>
+    <tr><td>Tiny-Scientist</td><td>2025.10</td><td class="n">136</td><td class="n">8</td><td>Lightweight fixed pipeline</td></tr>
+    <tr><td>AI Scientist-v2</td><td>2025.04</td><td class="n">7.2k</td><td class="n">517</td><td>Best-first tree search over experiment plans</td></tr>
+    <tr><td>AutoResearchClaw</td><td>2026.03</td><td class="n">14.5k</td><td class="n">27</td><td>Multi-stage state machine with quality gating</td></tr>
+    <tr><td>AI-Researcher</td><td>2025.05</td><td class="n">5.8k</td><td class="n">146</td><td>Multi-agent fixed pipeline</td></tr>
+  </table></div>
+  <div class="todo">To add: the commit or version of each tool that was evaluated.</div>
+</section></main>
+<footer>Companion website of a paper under double-anonymous review.</footer>
+</body>
+</html>

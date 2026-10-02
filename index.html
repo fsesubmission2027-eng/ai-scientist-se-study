@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="in"><h1>End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</h1></div></header>
+<nav aria-label="Pages"><div class="in"><a href="index.html" aria-current="page">Home</a><a href="definition.html">Definition</a><a href="tool-selection.html">Tool selection</a><a href="benchmark.html">Benchmark</a><a href="evaluation.html">Evaluation</a><a href="rq1.html">RQ1</a><a href="rq2.html">RQ2</a><a href="rq3.html">RQ3</a><a href="data.html">Data and code</a></div></nav>
+<main class="wrap"><section>
+  <p class="lede">Companion website of a paper under double-anonymous review. It holds the full study data and the details that did not fit in the paper.</p>
+
+  <div class="funnel" aria-label="Study at a glance">
+    <div><b>7</b>tools, chosen from 29 candidates</div>
+    <div><b>34</b>tasks, from 66 best papers of 2025</div>
+    <div><b>238</b>tool-task runs</div>
+    <div><b>0.54</b>best composite score, out of 1</div>
+  </div>
+
+  <h3>Abstract</h3>
+  <p>End-to-end AI Scientist tools that autonomously carry out the entire research lifecycle, from literature review to paper writing, are proliferating rapidly and hold the promise of greatly accelerating scientific discovery. Yet their practical value remains hard to judge: existing evaluations are largely self-reported, each tool is tested on its own benchmark with its own metrics, and no study has systematically compared several such systems on a shared framework. To close this gap, we present the first large-scale empirical study that directly compares seven end-to-end AI Scientist tools in the software engineering (SE) domain.</p>
+  <p>We build a benchmark of 34 research tasks distilled from the best papers at four top-tier SE conferences in 2025 and design a two-level evaluation framework that grades both overall paper quality and the intermediate artifacts produced at key pipeline stages, yielding 238 tool-task records. Only three of the seven tools complete more than 60% of the tasks, and the best composite score is just 0.54. All tools produce papers with high question importance (0.69 to 0.88) but weak support and negative experimental soundness, with experiment execution as the main bottleneck. Integrity failures are dominated by selective reporting rather than fabrication: of 22 concealment cases, only 2 involve fabricated numbers. Current tools are best understood as cost-effective drafting assistants rather than autonomous researchers.</p>
+
+  <figure><img src="assets/figures/fig1-overview.png" alt="Figure 1. Overview of the methodology" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 1. Overview of the methodology&lt;br&gt;add assets/figures/fig1-overview.png&lt;/div&gt;'"><figcaption>Figure 1. Overview of the methodology</figcaption></figure>
+
+  <h3>Eight findings</h3>
+  <ol>
+    <li><b>Completion follows execution architecture.</b> Fixed pipelines fail fatally on interface defects; tool-calling agents repair errors in place and complete 82% to 85% of tasks.</li>
+    <li><b>The shortfall is in evidence, not topic or writing.</b> Experimental Soundness is negative for every tool, and none of 104 reviewed papers is rated positive on it.</li>
+    <li><b>Tools answer a different question than the original paper.</b> Mean conclusion coverage is 0.58 and mean alignment 0.39.</li>
+    <li><b>Literature reviews are small and narrow, not fabricated.</b> Leading tools cite about 7 papers against 50 to 58 in the originals.</li>
+    <li><b>Ideas are mostly incremental.</b> 73% of 103 self-generated ideas are incremental improvements; none is a paradigm shift.</li>
+    <li><b>Hard-coded domain priors cause task drift.</b> Executors that assume a machine-learning workflow turn SE tasks into toy ML experiments.</li>
+    <li><b>Integrity failures are selection, not fabrication.</b> Of 22 confirmed concealment cases, 2 are fabricated numbers.</li>
+    <li><b>Low cost does not buy quality.</b> A run costs $1.42 on average, yet tools that complete almost nothing consume about half of all spending.</li>
+  </ol>
+
+  <h3>What each page adds to the paper</h3>
+  <div class="scroll"><table>
+    <tr><th>Page</th><th>Beyond the paper</th></tr>
+    <tr><td>Definition</td><td>The seven-stage reference process and how stage coverage was judged</td></tr>
+    <tr><td>Tool selection</td><td>All 29 candidates, the stage-coverage matrix, and why each excluded tool was excluded</td></tr>
+    <tr><td>Benchmark</td><td>All 66 source papers, per-paper filtering decisions, the 34 tasks, a full task package</td></tr>
+    <tr><td>Evaluation</td><td>Full rubrics, judge prompts, aggregation formulas, run configuration</td></tr>
+    <tr><td>RQ1, RQ2, RQ3</td><td>Per-task results, failure analyses, case studies</td></tr>
+    <tr><td>Data and code</td><td>Repository, raw run records, reproduction steps</td></tr>
+  </table></div>
+</section></main>
+<footer>Companion website of a paper under double-anonymous review.</footer>
+</body>
+</html>

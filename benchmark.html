@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark | AI Scientist tools in SE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="in"><div class="site">End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</div><h1>Benchmark construction</h1></div></header>
+<nav aria-label="Pages"><div class="in"><a href="index.html">Home</a><a href="definition.html">Definition</a><a href="tool-selection.html">Tool selection</a><a href="benchmark.html" aria-current="page">Benchmark</a><a href="evaluation.html">Evaluation</a><a href="rq1.html">RQ1</a><a href="rq2.html">RQ2</a><a href="rq3.html">RQ3</a><a href="data.html">Data and code</a></div></nav>
+<main class="wrap"><section>
+  <p>We started from all 66 best-paper-award papers of ASE, FSE, ICSE and ISSTA in 2025. Best papers are problems the SE community has already judged rigorous and impactful, which gives a high-quality seed set.</p>
+
+  <div class="funnel" aria-label="Task filtering funnel">
+    <div><b>66</b>best papers</div>
+    <div><b>61</b>after C1, hardware</div>
+    <div><b>51</b>after C2, data and baselines</div>
+    <div><b>49</b>after C3, human subjects</div>
+    <div><b>34</b>after C4, compute</div>
+  </div>
+
+  <h3>From paper to task package</h3>
+  <ol>
+    <li>Extract bibliographic metadata and key sections (Introduction, Experiment).</li>
+    <li>Run automated and manual quality checks on the extracted content.</li>
+    <li>Have an LLM rewrite the paper into a structured task: topic description, research questions, datasets, baselines, metrics, expected artifacts, difficulty.</li>
+    <li>Export an independent package, supplemented with candidate baseline repositories and related-work citations.</li>
+  </ol>
+
+  <h3>Filtering criteria</h3>
+  <div class="scroll"><table>
+    <tr><th>Criterion</th><th>A task is excluded when</th><th class="n">Removed</th></tr>
+    <tr><td>C1. Hardware and environment</td><td>It needs irreplaceable hardware or an environment too complex to reproduce</td><td class="n">5</td></tr>
+    <tr><td>C2. Dataset and baseline availability</td><td>The core dataset is restricted or the baseline is not open source</td><td class="n">10</td></tr>
+    <tr><td>C3. Human subjects</td><td>The experiment depends on human participants</td><td class="n">2</td></tr>
+    <tr><td>C4. Compute</td><td>The task's own workload needs GPU compute or extra LLM API access</td><td class="n">15</td></tr>
+  </table></div>
+
+  <h3>Task package layout</h3>
+<pre>task_XX/
+  task.md          topic description, research questions, setup
+  metadata.json    datasets, baselines, metrics, difficulty, feasibility
+  references.bib   reference list
+  resources.md     candidate baseline repositories, related work</pre>
+  <div class="todo">To add: one complete example package; the list of 66 source papers with the filtering decision for each; the list of 34 tasks (embed both as Google Sheets below this block).</div>
+</section></main>
+<footer>Companion website of a paper under double-anonymous review.</footer>
+</body>
+</html>

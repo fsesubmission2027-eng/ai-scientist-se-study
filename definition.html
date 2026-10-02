@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Definition | AI Scientist tools in SE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="in"><div class="site">End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</div><h1>Defining end-to-end AI Scientists</h1></div></header>
+<nav aria-label="Pages"><div class="in"><a href="index.html">Home</a><a href="definition.html" aria-current="page">Definition</a><a href="tool-selection.html">Tool selection</a><a href="benchmark.html">Benchmark</a><a href="evaluation.html">Evaluation</a><a href="rq1.html">RQ1</a><a href="rq2.html">RQ2</a><a href="rq3.html">RQ3</a><a href="data.html">Data and code</a></div></nav>
+<main class="wrap"><section>
+  <p>Existing systems use "end-to-end" inconsistently. Some do not run experiments, some stop short of writing a paper, and some do not generate ideas themselves. Rather than add another tool-specific definition, we adopt Kothari's discipline-agnostic model of the research process and require a tool to automate all of its stages.</p>
+
+  <figure><img src="assets/figures/fig2-seven-stages.png" alt="Figure 2. The seven-stage research process" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 2. The seven-stage research process&lt;br&gt;add assets/figures/fig2-seven-stages.png&lt;/div&gt;'"><figcaption>Figure 2. The seven-stage research process</figcaption></figure>
+
+  <div class="scroll"><table>
+    <tr><th class="n">#</th><th>Stage</th><th>What the tool must do on its own</th></tr>
+    <tr><td class="n">1</td><td>Problem Identification</td><td>Define the research problem</td></tr>
+    <tr><td class="n">2</td><td>Literature Review</td><td>Review relevant concepts, theories and prior findings</td></tr>
+    <tr><td class="n">3</td><td>Idea Generation</td><td>Formulate hypotheses</td></tr>
+    <tr><td class="n">4</td><td>Method Design</td><td>Design the research, including sample and experimental design</td></tr>
+    <tr><td class="n">5</td><td>Experiment</td><td>Collect data by executing the designed study</td></tr>
+    <tr><td class="n">6</td><td>Analysis</td><td>Analyse the data and test the hypotheses</td></tr>
+    <tr><td class="n">7</td><td>Paper Writing</td><td>Interpret results and report findings</td></tr>
+  </table></div>
+
+  <div class="def"><b>Definition 1.</b> An AI Scientist tool is end-to-end if and only if it autonomously executes all seven stages within a single system. A tool that automates only a strict subset of these stages is partial or stage-specific automation.</div>
+
+  <h3>How stage coverage was judged</h3>
+  <p>For each candidate we inspected source code, technical report and documentation, and labelled every stage:</p>
+  <ul>
+    <li><b>Autonomous</b>: executed by the tool without human input</li>
+    <li><b>Partial</b>: supported, but needs human-supplied material such as a code template</li>
+    <li><b>Absent</b>: no corresponding component</li>
+  </ul>
+  <p>The full matrix is on the Tool selection page.</p>
+</section></main>
+<footer>Companion website of a paper under double-anonymous review.</footer>
+</body>
+</html>
