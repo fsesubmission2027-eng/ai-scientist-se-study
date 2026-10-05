@@ -51,3 +51,17 @@
   figure img{max-width:100%;height:auto;display:block}
   figcaption{font-size:14px;color:var(--slate);margin-top:6px}
   footer{border-top:1px solid var(--line);color:var(--slate);font-size:13px;padding:16px 20px;text-align:center}
+
+  table.matrix{min-width:720px}
+  table.matrix thead th{position:sticky;top:44px;background:var(--paper);vertical-align:bottom}
+  table.matrix th small{display:block;font-weight:400;font-size:12px;color:var(--slate)}
+  table.matrix th[scope="row"]{font-weight:500;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;left:0;background:var(--paper)}
+  table.matrix .c{text-align:center}
+  table.matrix tr.grp th{background:#F1F3F6;border-bottom:1px solid var(--line);font-size:13px;padding-top:9px;padding-bottom:9px}
+  table.matrix tr.grp span{font-weight:400;color:var(--slate)}
+  table.matrix tr.sel td,table.matrix tr.sel th[scope="row"]{background:var(--tint)}
+  .ok{color:var(--teal);font-weight:600}
+  .no{color:#A33A2A;font-weight:600}
+  .na{color:#9AA5B4}
+  .tofill{background:var(--todo-bg);color:var(--todo-ink);padding:1px 6px;font-size:13px}
+  .legend{font-size:14px;color:var(--slate)}
