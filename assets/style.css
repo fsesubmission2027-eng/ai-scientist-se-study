@@ -53,7 +53,7 @@
   footer{border-top:1px solid var(--line);color:var(--slate);font-size:13px;padding:16px 20px;text-align:center}
 
   table.matrix{min-width:720px}
-  table.matrix thead th{position:sticky;top:44px;background:var(--paper);vertical-align:bottom}
+  table.matrix thead th{vertical-align:bottom}
   table.matrix th small{display:block;font-weight:400;font-size:12px;color:var(--slate)}
   table.matrix th[scope="row"]{font-weight:500;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;left:0;background:var(--paper)}
   table.matrix .c{text-align:center}
