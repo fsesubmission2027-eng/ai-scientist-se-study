@@ -15,8 +15,8 @@
 
   <h3>Literature review</h3>
   <p>Fabrication is rare: 0.05 on average over 129 evaluated runs. The weakness is volume and coverage. The leading tools cite 6.6 to 6.9 references on average against 50 to 58 in the original papers, and recall is 0.03 to 0.06 for five of six tools. AI-Researcher produced no literature-review output.</p>
-  <figure><img src="assets/figures/fig5-literature.png" alt="Figure 5. Literature review metrics" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 5. Literature review metrics&lt;br&gt;add assets/figures/fig5-literature.png&lt;/div&gt;'"><figcaption>Figure 5. Literature review metrics</figcaption></figure>
-  <div class="todo">To add: the per-tool table behind Figure 5, with the number of evaluated runs.</div>
+  <figure><img src="assets/figures/fig5-literature.png" alt="Figure 4. Literature review metrics" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 4. Literature review metrics&lt;br&gt;add assets/figures/fig5-literature.png&lt;/div&gt;'"><figcaption>Figure 4. Literature review metrics</figcaption></figure>
+  <div class="todo">To add: the per-tool table behind Figure 4, with the number of evaluated runs.</div>
 
   <h3>Idea generation</h3>
   <div class="scroll"><table>
@@ -25,10 +25,10 @@
     <tr><td>DeepScientist</td><td class="n">2.96</td><td class="n">3.04</td><td class="n">3.43</td><td class="n">3.08</td></tr>
     <tr><td>ARIS</td><td class="n">2.91</td><td class="n">3.33</td><td class="n">3.79</td><td class="n">3.20</td></tr>
     <tr><td>Tiny-Scientist</td><td class="n">3.57</td><td class="n">3.00</td><td class="n">3.77</td><td class="n">3.42</td></tr>
-    <tr><td>AI Scientist-v2 †</td><td class="n">2.19</td><td class="n">2.70</td><td class="n">2.62</td><td class="n">2.35</td></tr>
-    <tr><td>AutoResearchClaw †</td><td class="n">2.07</td><td class="n">1.93</td><td class="n">2.07</td><td class="n">1.93</td></tr>
+    <tr><td>AI Scientist-v2</td><td class="n">2.19</td><td class="n">2.70</td><td class="n">2.62</td><td class="n">2.35</td></tr>
+    <tr><td>AutoResearchClaw</td><td class="n">2.07</td><td class="n">1.93</td><td class="n">2.07</td><td class="n">1.93</td></tr>
   </table></div>
-  <p>† Runs without a separate idea artifact were scored on the task description, which lowers the mean. Scores are on a 1 to 5 scale.</p>
+  <p>Scores are on a 1 to 5 scale, averaged over evaluated runs (14 to 34 per tool). The composite is a holistic score assigned by the judge. AI-Researcher is excluded because it produced an idea artifact in only 1 of 34 runs.</p>
 
   <p>Novelty level of the 103 ideas the tools generated themselves:</p>
   <div class="bar tail"><span>Existing method</span><i style="width:9%"></i><span>9</span></div>
@@ -55,13 +55,12 @@
   <p>AI Scientist-v2's experiment agent runs prompts that hard-code a machine-learning workflow, and Tiny-Scientist defaults to a scikit-learn-style routine. On SE tasks such an executor reduces the study to a toy ML experiment. AI Scientist-v2 runs on synthetic data in 31 of 34 runs. In one Tiny-Scientist run, header-file splitting is implemented as a logistic regression on the Iris dataset.</p>
   <div class="todo">To add: the prompt excerpt that hard-codes the ML workflow, and the task description plus generated code for the Iris case.</div>
 
-  <h3>The 22 confirmed concealment cases</h3>
-  <p>Manual inspection of the 114 runs with a paper confirmed 22 cases.</p>
+  <h3>The 19 confirmed concealment cases</h3>
+  <p>The concealment rate in the table above counts runs flagged by an LLM as suspected. Manual inspection of the 104 reviewed papers confirmed 19 cases (18%).</p>
   <div class="scroll"><table>
     <tr><th>Category</th><th class="n">Cases</th></tr>
     <tr><td>Selective reporting: omitted failures, undisclosed downscaling, avoided baseline wins</td><td class="n">13</td></tr>
     <tr><td>Slight misreport or overstatement</td><td class="n">4</td></tr>
-    <tr><td>Paper claims no experiments were run although results exist</td><td class="n">3</td></tr>
     <tr><td>Fabricated numbers</td><td class="n">2</td></tr>
   </table></div>
   <div class="todo">To add: the case-by-case list (tool, task, what the result files show, what the paper reports).</div>

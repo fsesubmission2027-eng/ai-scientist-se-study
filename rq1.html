@@ -23,23 +23,25 @@
   <div class="bar tail"><span>AI Scientist-v2</span><i style="width:0.5%"></i><span>0%</span></div>
   <div class="bar tail"><span>AutoResearchClaw</span><i style="width:0.5%"></i><span>0%</span></div>
 
-  <h3>Completeness and composite scores</h3>
+  <h3>Completeness by artifact</h3>
+  <p>Mean over 34 tasks. Each artifact is graded from 0 to 1; the required-artifact score is the fraction of the four artifacts produced.</p>
   <div class="scroll"><table>
-    <tr><th>Tool</th><th class="n">Compl. rate</th><th class="n">Compl. score</th><th class="n">Required artifacts</th><th class="n">Bonus artifacts</th><th class="n">Composite</th></tr>
-    <tr class="lead"><td>EvoScientist</td><td class="n">85%</td><td class="n">0.76</td><td class="n">0.90</td><td class="n">0.10</td><td class="n">0.50</td></tr>
-    <tr class="lead"><td>DeepScientist</td><td class="n">85%</td><td class="n">0.80</td><td class="n">0.96</td><td class="n">0.02</td><td class="n">0.54</td></tr>
-    <tr class="lead"><td>ARIS</td><td class="n">82%</td><td class="n">0.80</td><td class="n">0.94</td><td class="n">0.13</td><td class="n">0.53</td></tr>
-    <tr><td>Tiny-Scientist</td><td class="n">3%</td><td class="n">0.22</td><td class="n">0.27</td><td class="n">0.03</td><td class="n">0.14</td></tr>
-    <tr><td>AI-Researcher</td><td class="n">3%</td><td class="n">0.30</td><td class="n">0.37</td><td class="n">0.05</td><td class="n">0.13</td></tr>
-    <tr><td>AI Scientist-v2</td><td class="n">0%</td><td class="n">0.63</td><td class="n">0.79</td><td class="n">0.03</td><td class="n">0.29</td></tr>
-    <tr><td>AutoResearchClaw</td><td class="n">0%</td><td class="n">0.30</td><td class="n">0.38</td><td class="n">0.07</td><td class="n">0.13</td></tr>
+    <tr><th>Tool</th><th class="n">Compl. rate</th><th class="n">Idea</th><th class="n">Code</th><th class="n">Results</th><th class="n">Paper</th><th class="n">Required artifacts</th></tr>
+    <tr class="lead"><td>EvoScientist</td><td class="n">85%</td><td class="n">0.88</td><td class="n">0.97</td><td class="n">0.88</td><td class="n">0.88</td><td class="n">0.90</td></tr>
+    <tr class="lead"><td>DeepScientist</td><td class="n">85%</td><td class="n">0.91</td><td class="n">1.00</td><td class="n">0.94</td><td class="n">1.00</td><td class="n">0.96</td></tr>
+    <tr class="lead"><td>ARIS</td><td class="n">82%</td><td class="n">1.00</td><td class="n">0.97</td><td class="n">0.85</td><td class="n">0.94</td><td class="n">0.94</td></tr>
+    <tr><td>Tiny-Scientist</td><td class="n">3%</td><td class="n">0.41</td><td class="n">0.35</td><td class="n">0.21</td><td class="n">0.12</td><td class="n">0.27</td></tr>
+    <tr><td>AI-Researcher</td><td class="n">3%</td><td class="n">0.03</td><td class="n">1.00</td><td class="n">0.24</td><td class="n">0.21</td><td class="n">0.37</td></tr>
+    <tr><td>AI Scientist-v2</td><td class="n">0%</td><td class="n">1.00</td><td class="n">1.00</td><td class="n">0.91</td><td class="n">0.25</td><td class="n">0.79</td></tr>
+    <tr><td>AutoResearchClaw</td><td class="n">0%</td><td class="n">0.97</td><td class="n">0.53</td><td class="n">0.00</td><td class="n">0.00</td><td class="n">0.38</td></tr>
   </table></div>
+  <p>AI Scientist-v2 is the one case where the metrics separate: it produces an idea, code and results in almost every run but fails at writing the paper, so it never completes.</p>
 
   <h3>Why runs fail</h3>
   <div class="scroll"><table>
     <tr><th>Tool</th><th>Dominant failure</th><th>Detail</th></tr>
     <tr><td>AI Scientist-v2</td><td>Truncated output</td><td>A hard-coded 4096-token output limit truncates the LaTeX; the run crashes on an unassigned pdf_path</td></tr>
-    <tr><td>AutoResearchClaw</td><td>Quality-gate rejection</td><td>Its own gates reject empty or inconsistent artifacts; reasoning-token exhaustion gives empty replies in 27.3% of calls</td></tr>
+    <tr><td>AutoResearchClaw</td><td>Quality-gate rejection</td><td>Its own quality gates reject empty or inconsistent intermediate artifacts</td></tr>
     <tr><td>Tiny-Scientist</td><td>Parse failure</td><td>The parser rejects ordinary replies of about 4.7k characters, ending 20 of 34 runs</td></tr>
     <tr><td>AI-Researcher</td><td>Uncontrolled iteration</td><td>A multi-agent loop without convergence control</td></tr>
     <tr><td>ARIS</td><td>Closing contract</td><td>Exits non-zero in 30 runs, though 28 already contain all four artifacts</td></tr>
@@ -49,7 +51,7 @@
   <div class="todo">To add: the artifact matrix for all 238 runs (Google Sheet) and one representative log excerpt per failure type.</div>
 
   <h3>Automated peer review</h3>
-  <p>104 generated papers were reviewed. The mean overall score is 4.83 out of 10 and the highest single paper reaches 6.70. AI Scientist-v2 and AutoResearchClaw produced no PDF.</p>
+  <p>104 generated papers were reviewed. The mean overall score is 4.83 out of 10 and the highest single paper reaches 6.70. AI Scientist-v2 and AutoResearchClaw produced no reviewable paper.</p>
   <div class="scroll"><table>
     <tr><th>Tool</th><th class="n">Papers</th><th class="n">Overall score</th></tr>
     <tr><td>DeepScientist</td><td class="n">34</td><td class="n">5.01</td></tr>
@@ -68,12 +70,19 @@
     <tr><td>Value to Community</td><td>near 0</td><td>82 neutral</td></tr>
     <tr><td>Prior Work Context</td><td>near 0</td><td>92 neutral, 3 positive</td></tr>
   </table></div>
-  <figure><img src="assets/figures/fig4a-apr.png" alt="Figure 4a. APR sub-dimension scores" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 4a. APR sub-dimension scores&lt;br&gt;add assets/figures/fig4a-apr.png&lt;/div&gt;'"><figcaption>Figure 4a. APR sub-dimension scores</figcaption></figure>
+  <figure style="max-width:460px"><img src="assets/figures/fig4a-apr.png" alt="Figure 3a. APR sub-dimension scores" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 3a. APR sub-dimension scores&lt;br&gt;add assets/figures/fig4a-apr.png&lt;/div&gt;'"><figcaption>Figure 3a. APR sub-dimension scores</figcaption></figure>
 
   <h3>Conclusion alignment with the original papers</h3>
   <p>Alignment could be evaluated for 135 runs. Mean alignment is 0.39 and mean coverage is 0.58, so even the leading tools recover only about half of the original conclusions. When a task needs large datasets or long runtimes, tools switch to their own datasets, metrics and comparison targets.</p>
-  <p>Only 21 evaluations allow a numeric comparison, giving 52 metric pairs: 36 agree with the original, 4 are worse, 4 are better, and 8 turn out not to be comparable. None of the 4 better pairs is a real gain.</p>
-  <div class="todo">To add: the per-tool alignment table and the list of 52 metric pairs.</div>
+  <p>Mean conclusion-alignment score per tool (0 to 1), with the number of evaluable runs. AutoResearchClaw produced no results and is absent.</p>
+  <div class="bar"><span>AI-Researcher <small style="color:var(--slate)">n=9</small></span><i style="width:48%"></i><span>0.48</span></div>
+  <div class="bar"><span>EvoScientist <small style="color:var(--slate)">n=31</small></span><i style="width:45%"></i><span>0.45</span></div>
+  <div class="bar"><span>DeepScientist <small style="color:var(--slate)">n=34</small></span><i style="width:41%"></i><span>0.41</span></div>
+  <div class="bar"><span>Tiny-Scientist <small style="color:var(--slate)">n=7</small></span><i style="width:39%"></i><span>0.39</span></div>
+  <div class="bar"><span>ARIS <small style="color:var(--slate)">n=33</small></span><i style="width:34%"></i><span>0.34</span></div>
+  <div class="bar"><span>AI Scientist-v2 <small style="color:var(--slate)">n=21</small></span><i style="width:32%"></i><span>0.32</span></div>
+  <p style="margin-top:14px">Only 21 evaluations allow a numeric comparison, giving 52 metric pairs: 36 agree with the original, 4 are worse, 4 are better, and 8 turn out not to be comparable. None of the 4 better pairs is a real gain.</p>
+  <div class="todo">To add: the list of 52 metric pairs.</div>
 </section></main>
 <footer>Companion website of a paper under double-anonymous review.</footer>
 </body>

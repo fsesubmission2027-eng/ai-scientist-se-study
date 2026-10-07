@@ -17,11 +17,10 @@
   <h3>Level 1. Overall quality</h3>
   <div class="scroll"><table>
     <tr><th>Metric</th><th>What it measures</th><th>How</th></tr>
-    <tr><td>Completeness</td><td>Whether the four expected artifacts exist: idea file, code, result files, paper PDF</td><td>Artifact inspection</td></tr>
+    <tr><td>Completeness</td><td>Whether the four expected artifacts exist: idea file, code, result files, paper PDF</td><td>File check. Each artifact is graded from 0 to 1; the paper counts 1 for a compiled PDF and 0.5 for TeX or JSON only. A run is complete when all four are present, and the required-artifact score is the fraction of the four actually produced</td></tr>
     <tr><td>Automated peer review</td><td>Quality of the generated manuscript</td><td>Stanford APR tool: overall score 1 to 10, seven sub-dimensions from −1 to +1</td></tr>
     <tr><td>Conclusion alignment</td><td>Faithfulness to the original best paper</td><td>LLM extraction of claims and metrics from both papers; direction first, numbers only when comparable</td></tr>
   </table></div>
-  <div class="todo">To add: the composite score formula and weights.</div>
 
   <h3>Level 2. Literature review</h3>
   <div class="scroll"><table>
@@ -32,28 +31,41 @@
   </table></div>
 
   <h3>Level 2. Idea generation</h3>
-  <p>An LLM judge scores each idea from 1 to 5 on three dimensions. Novelty is scored against a per-task Solution Space built from the key innovations of the original paper's references.</p>
+  <p>An LLM judge scores each idea from 1 to 5 on three dimensions, using the rubrics below. Novelty is scored against a per-task Solution Space: an LLM reads the titles and abstracts of the original paper's references and extracts the key innovation from each. The judge also assigns each idea a holistic composite quality score from 1 to 5; this is a separate judgement, not an average of the three dimensions.</p>
   <div class="scroll"><table>
-    <tr><th class="n">Score</th><th>Novelty</th><th>Feasibility</th><th>Clarity</th></tr>
-    <tr><td class="n">1</td><td>Existing: core method already in the Solution Space</td><td>Infeasible</td><td>Vague concept</td></tr>
-    <tr><td class="n">2</td><td>Trivial mashup of two existing techniques</td><td>Very high barrier: months of low-level tooling</td><td>Broken logic: method does not match the problem</td></tr>
-    <tr><td class="n">3</td><td>Incremental: fixes a specific limitation, paradigm unchanged</td><td>Moderate effort: a standard research workload</td><td>What, why and how present; key details vague</td></tr>
-    <tr><td class="n">4</td><td>Novel combination with a cross-domain insight</td><td>Low barrier: off-the-shelf libraries</td><td>Clear and concrete, proposal-ready</td></tr>
-    <tr><td class="n">5</td><td>Paradigm shift</td><td>Trivial: parameter changes or one API call</td><td>Rigorously precise, discusses limitations</td></tr>
+    <tr><th class="n">Score</th><th>Level</th><th>Criterion</th></tr>
+    <tr class="lead"><td colspan="3" style="background:#F1F3F6">Novelty</td></tr>
+    <tr><td class="n">1</td><td>Existing</td><td>Core method already in the Solution Space; only minor parameters or test cases differ.</td></tr>
+    <tr><td class="n">2</td><td>Trivial mashup</td><td>Two existing techniques combined mechanically (for example, swapping in an LLM for one module), without deep integration.</td></tr>
+    <tr><td class="n">3</td><td>Incremental</td><td>A meaningful extension that fixes a specific limitation, but the core paradigm is unchanged.</td></tr>
+    <tr><td class="n">4</td><td>Novel combination</td><td>A cross-domain insight introduces a method not native to the field, producing a synergistic effect.</td></tr>
+    <tr><td class="n">5</td><td>Paradigm shift</td><td>A mechanism, architecture, or theory entirely absent from the Solution Space, replacing the existing approach.</td></tr>
+    <tr class="lead"><td colspan="3" style="background:#F1F3F6">Feasibility</td></tr>
+    <tr><td class="n">1</td><td>Infeasible</td><td>NP-hard computation, an extremely complex system-level environment, or dependence on inaccessible closed-model internals.</td></tr>
+    <tr><td class="n">2</td><td>Very high barrier</td><td>Requires building complex low-level tooling from scratch (for example, custom compiler plugins); development may take months.</td></tr>
+    <tr><td class="n">3</td><td>Moderate effort</td><td>Requires scripting together existing open-source tools or building a custom data pipeline; a standard research workload.</td></tr>
+    <tr><td class="n">4</td><td>Low barrier</td><td>Core logic can be quickly assembled from off-the-shelf libraries or common frameworks; only minor modifications needed.</td></tr>
+    <tr><td class="n">5</td><td>Trivial</td><td>A few parameter changes to existing code, or a direct call to an existing library or API.</td></tr>
+    <tr class="lead"><td colspan="3" style="background:#F1F3F6">Clarity</td></tr>
+    <tr><td class="n">1</td><td>Vague concept</td><td>Full of empty phrasing; the problem is poorly defined; only a broad direction is given with no substance.</td></tr>
+    <tr><td class="n">2</td><td>Broken logic</td><td>A problem is stated, but the proposed method does not match it, or evaluation is never mentioned.</td></tr>
+    <tr><td class="n">3</td><td>Incomplete detail</td><td>What, Why and How are all present, but key technical details or comparison setups remain vague.</td></tr>
+    <tr><td class="n">4</td><td>Clear and concrete</td><td>Steps are explicit, with a reasonable and specific experimental design; could be turned into a proposal.</td></tr>
+    <tr><td class="n">5</td><td>Rigorously precise</td><td>System-architecture or pseudocode-level clarity; proactively discusses limitations or mitigations.</td></tr>
   </table></div>
 
   <h3>Level 2. Experiment</h3>
   <div class="scroll"><table>
     <tr><th>Metric</th><th>Definition</th></tr>
-    <tr><td>Completion</td><td>The experiment ran to completion and produced valid results</td></tr>
+    <tr><td>Experiment success rate</td><td>Share of runs whose experiment ran to completion and produced valid results, as opposed to failing, stalling, or producing empty or stub output</td></tr>
     <tr><td>Setup coverage</td><td>Share of the specified datasets, baselines and metrics actually used</td></tr>
-    <tr><td>Ablation</td><td>Whether an ablation covers the method components implied by the idea</td></tr>
+    <tr><td>Ablation coverage</td><td>An LLM extracts the method components implied by the idea; coverage is the fraction of them the ablation study covers</td></tr>
+    <tr><td>Ablation pass rate</td><td>Share of ablations that produce valid results</td></tr>
     <tr><td>Significance testing</td><td>Rule-based scan for confidence intervals, p-values and similar signals</td></tr>
     <tr><td>Idea-to-code consistency</td><td>LLM judge, 1 to 5: does the code implement the claimed idea</td></tr>
     <tr><td>Result-to-paper consistency</td><td>LLM judge, 1 to 5: do the result files match the paper</td></tr>
-    <tr><td>Negative-result concealment</td><td>Result files show outcomes that the paper omits or misrepresents; flagged automatically, then confirmed by manual inspection</td></tr>
+    <tr><td>Concealment rate</td><td>Share of runs flagged by an LLM for suspected negative-result concealment, where result files show outcomes that the paper omits or misrepresents. Separately, the reviewed papers were inspected manually to confirm cases (see RQ2)</td></tr>
   </table></div>
-  <div class="todo">To add: the judge prompts (Solution Space extraction, idea scoring, claim alignment, consistency checks, concealment detection) and any human validation of the judges.</div>
 
   <h3>Run configuration</h3>
   <div class="scroll"><table>
