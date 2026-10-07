@@ -7,6 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+  table.detail{min-width:780px}
+  table.detail td small{display:block;color:var(--slate);font-size:12px;white-space:nowrap}
+  table.detail td.sub{padding-left:26px;color:var(--slate)}
+  table.detail th.n{white-space:normal}
+</style>
 </head>
 <body>
 <header class="top"><div class="in"><div class="site">End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</div><h1>RQ2. Stage-level capabilities and limitations</h1></div></header>
@@ -16,7 +22,16 @@
   <h3>Literature review</h3>
   <p>Fabrication is rare: 0.05 on average over 129 evaluated runs. The weakness is volume and coverage. The leading tools cite 6.6 to 6.9 references on average against 50 to 58 in the original papers, and recall is 0.03 to 0.06 for five of six tools. AI-Researcher produced no literature-review output.</p>
   <figure><img src="assets/figures/fig5-literature.png" alt="Figure 4. Literature review metrics" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 4. Literature review metrics&lt;br&gt;add assets/figures/fig5-literature.png&lt;/div&gt;'"><figcaption>Figure 4. Literature review metrics</figcaption></figure>
-  <div class="todo">To add: the per-tool table behind Figure 4, with the number of evaluated runs.</div>
+  <div class="scroll"><table class="detail">
+    <tr><th>Metric</th><th class="n">All</th><th class="n">ARIS</th><th class="n">Deep&shy;Scientist</th><th class="n">Evo&shy;Scientist</th><th class="n">AI Scientist-v2</th><th class="n">AutoResearch&shy;Claw</th><th class="n">Tiny-Scientist</th></tr>
+    <tr><td>References cited per run</td><td class="n">8.9<small>n=204 &middot; max 91.0</small></td><td class="n">6.9<small>n=34 &middot; max 17.0</small></td><td class="n">6.6<small>n=34 &middot; max 17.0</small></td><td class="n">6.9<small>n=34 &middot; max 20.0</small></td><td class="n">2.1<small>n=34 &middot; max 6.0</small></td><td class="n">26.8<small>n=34 &middot; max 91.0</small></td><td class="n">3.9<small>n=34 &middot; max 40.0</small></td></tr>
+    <tr><td>Fabrication rate (lower is better)</td><td class="n">0.05<small>n=129 &middot; max 1.00</small></td><td class="n">0.09<small>n=32 &middot; max 1.00</small></td><td class="n">0.04<small>n=28 &middot; max 0.50</small></td><td class="n">0.09<small>n=23 &middot; max 0.67</small></td><td class="n">0.00<small>n=17 &middot; max 0.00</small></td><td class="n">0.00<small>n=23 &middot; max 0.03</small></td><td class="n">0.00<small>n=6 &middot; max 0.00</small></td></tr>
+    <tr><td>Recall</td><td class="n">0.14<small>n=130 &middot; max 0.85</small></td><td class="n">0.06<small>n=32 &middot; max 0.28</small></td><td class="n">0.04<small>n=28 &middot; max 0.17</small></td><td class="n">0.06<small>n=24 &middot; max 0.19</small></td><td class="n">0.03<small>n=17 &middot; max 0.07</small></td><td class="n">0.57<small>n=23 &middot; max 0.85</small></td><td class="n">0.03<small>n=6 &middot; max 0.05</small></td></tr>
+    <tr><td>Precision</td><td class="n">0.37<small>n=130 &middot; max 1.00</small></td><td class="n">0.34<small>n=32 &middot; max 0.67</small></td><td class="n">0.24<small>n=28 &middot; max 0.71</small></td><td class="n">0.31<small>n=24 &middot; max 0.73</small></td><td class="n">0.35<small>n=17 &middot; max 1.00</small></td><td class="n">0.72<small>n=23 &middot; max 0.95</small></td><td class="n">0.08<small>n=6 &middot; max 0.20</small></td></tr>
+    <tr><td>Share from the last 3 years</td><td class="n">0.42<small>n=128 &middot; max 1.00</small></td><td class="n">0.36<small>n=32 &middot; max 1.00</small></td><td class="n">0.48<small>n=27 &middot; max 1.00</small></td><td class="n">0.44<small>n=23 &middot; max 1.00</small></td><td class="n">0.60<small>n=17 &middot; max 1.00</small></td><td class="n">0.22<small>n=23 &middot; max 0.79</small></td><td class="n">0.60<small>n=6 &middot; max 0.90</small></td></tr>
+    <tr><td>Share from the last 5 years</td><td class="n">0.55<small>n=128 &middot; max 1.00</small></td><td class="n">0.49<small>n=32 &middot; max 1.00</small></td><td class="n">0.63<small>n=27 &middot; max 1.00</small></td><td class="n">0.56<small>n=23 &middot; max 1.00</small></td><td class="n">0.65<small>n=17 &middot; max 1.00</small></td><td class="n">0.41<small>n=23 &middot; max 0.93</small></td><td class="n">0.67<small>n=6 &middot; max 0.97</small></td></tr>
+  </table></div>
+  <p class="legend">Each cell shows the mean, with the number of evaluated runs and the maximum below it. Recall is the share of the original paper's references that the tool cites; precision is the share of the tool's citations that appear in the original paper's reference list. AutoResearchClaw's recall and precision are not comparable with the other tools: it could not run a normal literature search on these tasks, so its candidate pool was taken from the supplied reference list. AI-Researcher produced no literature output and is omitted.</p>
 
   <h3>Idea generation</h3>
   <div class="scroll"><table>
@@ -30,40 +45,41 @@
   </table></div>
   <p>Scores are on a 1 to 5 scale, averaged over evaluated runs (14 to 34 per tool). The composite is a holistic score assigned by the judge. AI-Researcher is excluded because it produced an idea artifact in only 1 of 34 runs.</p>
 
-  <p>Novelty level of the 103 ideas the tools generated themselves:</p>
-  <div class="bar tail"><span>Existing method</span><i style="width:9%"></i><span>9</span></div>
-  <div class="bar"><span>Incremental</span><i style="width:73%"></i><span>75</span></div>
-  <div class="bar tail"><span>Novel combination</span><i style="width:18%"></i><span>19</span></div>
-  <div class="bar tail"><span>Paradigm shift</span><i style="width:0.5%"></i><span>0</span></div>
+  <p>Novelty score of the 103 ideas the tools generated themselves (mean 2.87):</p>
+  <div class="bar tail"><span>1 Existing</span><i style="width:13%"></i><span>13</span></div>
+  <div class="bar tail"><span>2 Trivial mashup</span><i style="width:2%"></i><span>2</span></div>
+  <div class="bar"><span>3 Incremental</span><i style="width:71%"></i><span>73</span></div>
+  <div class="bar tail"><span>4 Novel combination</span><i style="width:15%"></i><span>15</span></div>
+  <div class="bar tail"><span>5 Paradigm shift</span><i style="width:0%"></i><span>0</span></div>
   <div class="todo">To add: one or two example ideas per level, with the judge's rationale.</div>
 
   <h3>Experiment execution</h3>
-  <div class="scroll"><table>
-    <tr><th>Metric</th><th class="n">Evo&shy;Scientist</th><th class="n">Deep&shy;Scientist</th><th class="n">ARIS</th><th class="n">Tiny-Scientist</th><th class="n">AI Scientist-v2</th><th class="n">AutoResearch&shy;Claw</th><th class="n">AI-Researcher</th></tr>
-    <tr><td>Experiment success rate</td><td class="n">88%</td><td class="n">94%</td><td class="n">85%</td><td class="n">21%</td><td class="n">56%</td><td class="n">0%</td><td class="n">24%</td></tr>
-    <tr><td>Idea-to-code consistency (1 to 5)</td><td class="n">3.47</td><td class="n">3.14</td><td class="n">3.45</td><td class="n">1.33</td><td class="n">1.76</td><td class="n">1.22</td><td class="n">n/a</td></tr>
-    <tr><td>Setup coverage (0 to 1)</td><td class="n">0.90</td><td class="n">0.92</td><td class="n">0.93</td><td class="n">0.29</td><td class="n">0.73</td><td class="n">0.24</td><td class="n">0.95</td></tr>
-    <tr><td>Ablation coverage (0 to 1)</td><td class="n">0.36</td><td class="n">0.42</td><td class="n">0.66</td><td class="n">0.00</td><td class="n">0.48</td><td class="n">n/a</td><td class="n">n/a</td></tr>
-    <tr><td>Ablation pass rate</td><td class="n">38%</td><td class="n">22%</td><td class="n">28%</td><td class="n">0%</td><td class="n">27%</td><td class="n">n/a</td><td class="n">n/a</td></tr>
-    <tr><td>Significance test rate</td><td class="n">50%</td><td class="n">33%</td><td class="n">20%</td><td class="n">0%</td><td class="n">0%</td><td class="n">n/a</td><td class="n">n/a</td></tr>
-    <tr><td>Result-to-paper consistency (1 to 5)</td><td class="n">3.53</td><td class="n">3.32</td><td class="n">3.16</td><td class="n">1.43</td><td class="n">2.33</td><td class="n">n/a</td><td class="n">3.00</td></tr>
-    <tr><td>Concealment rate, lower is better</td><td class="n">24%</td><td class="n">21%</td><td class="n">11%</td><td class="n">29%</td><td class="n">53%</td><td class="n">n/a</td><td class="n">50%</td></tr>
+  <div class="scroll"><table class="detail">
+    <tr><th>Metric</th><th class="n">All</th><th class="n">ARIS</th><th class="n">Deep&shy;Scientist</th><th class="n">Evo&shy;Scientist</th><th class="n">AI Scientist-v2</th><th class="n">AutoResearch&shy;Claw</th><th class="n">Tiny-Scientist</th><th class="n">AI-Researcher</th></tr>
+    <tr><td>Experiment success</td><td class="n">125/238</td><td class="n">29/34</td><td class="n">32/34</td><td class="n">30/34</td><td class="n">19/34</td><td class="n">0/34</td><td class="n">7/34</td><td class="n">8/34</td></tr>
+    <tr><td>Idea-to-code consistency (1 to 5)</td><td class="n">2.60<small>n=155 &middot; max 5.00</small></td><td class="n">3.45<small>n=31 &middot; max 5.00</small></td><td class="n">3.14<small>n=29 &middot; max 5.00</small></td><td class="n">3.47<small>n=30 &middot; max 5.00</small></td><td class="n">1.76<small>n=34 &middot; max 3.00</small></td><td class="n">1.22<small>n=18 &middot; max 3.00</small></td><td class="n">1.33<small>n=12 &middot; max 3.00</small></td><td class="n"><span class="na">&ndash;</span></td></tr>
+    <tr><td>Setup coverage (0 to 1)</td><td class="n">0.71<small>n=238 &middot; max 1.00</small></td><td class="n">0.93<small>n=34 &middot; max 1.00</small></td><td class="n">0.92<small>n=34 &middot; max 1.00</small></td><td class="n">0.90<small>n=34 &middot; max 1.00</small></td><td class="n">0.73<small>n=34 &middot; max 1.00</small></td><td class="n">0.24<small>n=34 &middot; max 1.00</small></td><td class="n">0.29<small>n=34 &middot; max 1.00</small></td><td class="n">0.95<small>n=34 &middot; max 1.00</small></td></tr>
+    <tr><td class="sub">Datasets</td><td class="n">0.73<small>n=238 &middot; max 1.00</small></td><td class="n">0.93<small>n=34 &middot; max 1.00</small></td><td class="n">0.92<small>n=34 &middot; max 1.00</small></td><td class="n">0.89<small>n=34 &middot; max 1.00</small></td><td class="n">0.82<small>n=34 &middot; max 1.00</small></td><td class="n">0.28<small>n=34 &middot; max 1.00</small></td><td class="n">0.32<small>n=34 &middot; max 1.00</small></td><td class="n">0.96<small>n=34 &middot; max 1.00</small></td></tr>
+    <tr><td class="sub">Baselines</td><td class="n">0.61<small>n=203 &middot; max 1.00</small></td><td class="n">0.87<small>n=29 &middot; max 1.00</small></td><td class="n">0.87<small>n=29 &middot; max 1.00</small></td><td class="n">0.80<small>n=29 &middot; max 1.00</small></td><td class="n">0.46<small>n=29 &middot; max 1.00</small></td><td class="n">0.14<small>n=29 &middot; max 1.00</small></td><td class="n">0.20<small>n=29 &middot; max 1.00</small></td><td class="n">0.91<small>n=29 &middot; max 1.00</small></td></tr>
+    <tr><td class="sub">Metrics</td><td class="n">0.76<small>n=238 &middot; max 1.00</small></td><td class="n">0.97<small>n=34 &middot; max 1.00</small></td><td class="n">0.97<small>n=34 &middot; max 1.00</small></td><td class="n">0.97<small>n=34 &middot; max 1.00</small></td><td class="n">0.84<small>n=34 &middot; max 1.00</small></td><td class="n">0.27<small>n=34 &middot; max 1.00</small></td><td class="n">0.30<small>n=34 &middot; max 1.00</small></td><td class="n">0.96<small>n=34 &middot; max 1.00</small></td></tr>
+    <tr><td>Ablation coverage (0 to 1) †</td><td class="n">0.45<small>n=70 &middot; max 1.00</small></td><td class="n">0.66<small>n=18 &middot; max 1.00</small></td><td class="n">0.42<small>n=18 &middot; max 1.00</small></td><td class="n">0.36<small>n=13 &middot; max 1.00</small></td><td class="n">0.48<small>n=15 &middot; max 1.00</small></td><td class="n"><span class="na">&ndash;</span></td><td class="n">0.00<small>n=6 &middot; max 0.00</small></td><td class="n"><span class="na">&ndash;</span></td></tr>
+    <tr><td>Ablation pass †</td><td class="n">18/70</td><td class="n">5/18</td><td class="n">4/18</td><td class="n">5/13</td><td class="n">4/15</td><td class="n"><span class="na">&ndash;</span></td><td class="n">0/6</td><td class="n"><span class="na">&ndash;</span></td></tr>
+    <tr><td>Significance test pass †</td><td class="n">13/56</td><td class="n">3/15</td><td class="n">4/12</td><td class="n">6/12</td><td class="n">0/11</td><td class="n"><span class="na">&ndash;</span></td><td class="n">0/5</td><td class="n"><span class="na">&ndash;</span></td></tr>
+    <tr><td>Result-to-paper consistency (1 to 5)</td><td class="n">3.00<small>n=91 &middot; max 5.00</small></td><td class="n">3.16<small>n=19 &middot; max 5.00</small></td><td class="n">3.32<small>n=25 &middot; max 5.00</small></td><td class="n">3.53<small>n=19 &middot; max 5.00</small></td><td class="n">2.33<small>n=15 &middot; max 5.00</small></td><td class="n"><span class="na">&ndash;</span></td><td class="n">1.43<small>n=7 &middot; max 4.00</small></td><td class="n">3.00<small>n=6 &middot; max 5.00</small></td></tr>
+    <tr><td>Flagged for suspected concealment (lower is better)</td><td class="n">29/114</td><td class="n">3/28</td><td class="n">6/29</td><td class="n">7/29</td><td class="n">8/15</td><td class="n"><span class="na">&ndash;</span></td><td class="n">2/7</td><td class="n">3/6</td></tr>
   </table></div>
-  <p>n/a: at most one evaluable run, or no paper.</p>
-
-  <h3>Case study: domain priors in the executor</h3>
-  <p>AI Scientist-v2's experiment agent runs prompts that hard-code a machine-learning workflow, and Tiny-Scientist defaults to a scikit-learn-style routine. On SE tasks such an executor reduces the study to a toy ML experiment. AI Scientist-v2 runs on synthetic data in 31 of 34 runs. In one Tiny-Scientist run, header-file splitting is implemented as a logistic regression on the Iris dataset.</p>
-  <div class="todo">To add: the prompt excerpt that hard-codes the ML workflow, and the task description plus generated code for the Iris case.</div>
+  <p class="legend">Cells with a mean also show the number of evaluable runs and the maximum; cells written as a/b are counts. A dash means at most one evaluable run. † Counted only over runs whose experiment succeeded and where the evaluator found a component to ablate, or a comparison that calls for a significance test; other runs are not applicable and are left out of the denominator.</p>
 
   <h3>The 19 confirmed concealment cases</h3>
   <p>The concealment rate in the table above counts runs flagged by an LLM as suspected. Manual inspection of the 104 reviewed papers confirmed 19 cases (18%).</p>
   <div class="scroll"><table>
-    <tr><th>Category</th><th class="n">Cases</th></tr>
-    <tr><td>Selective reporting: omitted failures, undisclosed downscaling, avoided baseline wins</td><td class="n">13</td></tr>
-    <tr><td>Slight misreport or overstatement</td><td class="n">4</td></tr>
-    <tr><td>Fabricated numbers</td><td class="n">2</td></tr>
+    <tr><th>Category</th><th class="n">Cases</th><th>Examples</th></tr>
+    <tr><td>Selective reporting: omitting failures, shrinking the experiment without disclosure, or claiming an improvement when the baseline is better</td><td class="n">13</td><td>EvoScientist on ASE-2025-017 claims 571 instances but ran 20. EvoScientist on ASE-2025-013 leaves out a compilation rate of 0. AI-Researcher on FSE-2025-005 claims an improvement although the baseline performs better.</td></tr>
+    <tr><td>Slight misreport or overstatement of a number</td><td class="n">4</td><td>AI-Researcher on FSE-2025-006, EvoScientist on FSE-2025-006, EvoScientist on ISSTA-2025-004.</td></tr>
+    <tr><td>Fabrication: a number in the paper has no source in the run directory</td><td class="n">2</td><td>Tiny-Scientist on ASE-2025-016 reports 91.8 with no matching result. Tiny-Scientist on ASE-2025-013 writes about header-file splitting, while the code it ran is an Iris classifier.</td></tr>
+    <tr class="lead"><td>Total</td><td class="n">19</td><td></td></tr>
   </table></div>
-  <div class="todo">To add: the case-by-case list (tool, task, what the result files show, what the paper reports).</div>
+  <p>The common cause is that nothing binds the numbers in the paper to the result files. In every tool the LLM writes the tables from a summary of the experiments instead of generating them from the result files, so the paper drifts toward a favorable story.</p>
 </section></main>
 <footer>Companion website of a paper under double-anonymous review.</footer>
 </body>

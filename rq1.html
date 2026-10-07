@@ -7,6 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+  table.detail{min-width:780px}
+  table.detail td small{display:block;color:var(--slate);font-size:12px;white-space:nowrap}
+  table.detail td.sub{padding-left:26px;color:var(--slate)}
+  table.detail th.n{white-space:normal}
+</style>
 </head>
 <body>
 <header class="top"><div class="in"><div class="site">End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</div><h1>RQ1. Overall success rates and output quality</h1></div></header>
@@ -40,35 +46,40 @@
   <h3>Why runs fail</h3>
   <div class="scroll"><table>
     <tr><th>Tool</th><th>Dominant failure</th><th>Detail</th></tr>
-    <tr><td>AI Scientist-v2</td><td>Truncated output</td><td>A hard-coded 4096-token output limit truncates the LaTeX; the run crashes on an unassigned pdf_path</td></tr>
-    <tr><td>AutoResearchClaw</td><td>Quality-gate rejection</td><td>Its own quality gates reject empty or inconsistent intermediate artifacts</td></tr>
-    <tr><td>Tiny-Scientist</td><td>Parse failure</td><td>The parser rejects ordinary replies of about 4.7k characters, ending 20 of 34 runs</td></tr>
-    <tr><td>AI-Researcher</td><td>Uncontrolled iteration</td><td>A multi-agent loop without convergence control</td></tr>
-    <tr><td>ARIS</td><td>Closing contract</td><td>Exits non-zero in 30 runs, though 28 already contain all four artifacts</td></tr>
-    <tr><td>DeepScientist</td><td>Closing contract</td><td>3 runs end with a 7-byte placeholder idea file</td></tr>
-    <tr><td>EvoScientist</td><td>Empty runs</td><td>5 empty runs</td></tr>
+    <tr><td style="white-space:nowrap">AI Scientist-v2</td><td>No PDF: the writing stage fails</td><td>Completes 0 of 34 runs. The paper is either missing or exists only as JSON (17 runs each), and the pipeline reports failure in about 31 runs. Logs mostly show rate limits and failed experiments, and idea-to-code consistency is very low (mean about 1.8).</td></tr>
+    <tr><td style="white-space:nowrap">AI-Researcher</td><td>Pipeline stops early, no idea file</td><td>Completes 1 of 34 runs. 33 runs have no idea file, and most of them also lack results and a paper. Logs are dominated by crashes, API quota errors and logger truncation errors.</td></tr>
+    <tr><td style="white-space:nowrap">ARIS</td><td>Weakened protocol</td><td>Completes 28 of 34 runs. About half of its papers score below 5 in review, and the experiment scale is often cut substantially.</td></tr>
+    <tr><td style="white-space:nowrap">DeepScientist</td><td>Result-integrity risks</td><td>Completes 29 of 34 runs, with a PDF in every run. The evaluation often finds a reduced protocol, about 6 runs flagged for concealing unfavorable results, and hard-coded pilot values or reported metrics that do not match the code.</td></tr>
+    <tr><td style="white-space:nowrap">EvoScientist</td><td>Occasional missing artifacts and concealed results</td><td>Completes 29 of 34 runs. The incomplete runs mostly lack the idea, results or paper. About 7 runs are flagged for concealing unfavorable results, and the citation fabrication rate is high in some runs.</td></tr>
+    <tr><td style="white-space:nowrap">AutoResearchClaw</td><td>Stopped by its own quality gate in the experiment stage</td><td>Completes 0 of 34 runs; every run lacks results and a paper. About 22 logs point to the quality gate. Most runs stop in the experiment stage and never reach writing.</td></tr>
+    <tr><td style="white-space:nowrap">Tiny-Scientist</td><td>Broken TeX and repair chain, silent change of topic</td><td>Completes 1 of 34 runs; about 20 runs produce none of the four artifacts. The writing stage commonly fails on a missing <code>inconsolata.sty</code> and a failed import of <code>tiny_scientist.llm</code>. When code exists, idea-to-code consistency is 1, and the topic drifts in about 6 to 9 runs.</td></tr>
   </table></div>
   <div class="todo">To add: the artifact matrix for all 238 runs (Google Sheet) and one representative log excerpt per failure type.</div>
 
   <h3>Automated peer review</h3>
   <p>104 generated papers were reviewed. The mean overall score is 4.83 out of 10 and the highest single paper reaches 6.70. AI Scientist-v2 and AutoResearchClaw produced no reviewable paper.</p>
-  <div class="scroll"><table>
-    <tr><th>Tool</th><th class="n">Papers</th><th class="n">Overall score</th></tr>
-    <tr><td>DeepScientist</td><td class="n">34</td><td class="n">5.01</td></tr>
-    <tr><td>EvoScientist</td><td class="n">30</td><td class="n">4.87</td></tr>
-    <tr><td>ARIS</td><td class="n">32</td><td class="n">4.71</td></tr>
-    <tr><td>AI-Researcher</td><td class="n">7</td><td class="n">4.19</td></tr>
-    <tr><td>Tiny-Scientist</td><td class="n">1</td><td class="n">5.60</td></tr>
+  <div class="scroll"><table class="detail">
+    <tr><th>Metric</th><th class="n">All<small style="display:block;font-weight:400;color:var(--slate)">n=104</small></th><th class="n">ARIS<small style="display:block;font-weight:400;color:var(--slate)">n=32</small></th><th class="n">Deep&shy;Scientist<small style="display:block;font-weight:400;color:var(--slate)">n=34</small></th><th class="n">Evo&shy;Scientist<small style="display:block;font-weight:400;color:var(--slate)">n=30</small></th><th class="n">Tiny-Scientist<small style="display:block;font-weight:400;color:var(--slate)">n=1</small></th><th class="n">AI-Researcher<small style="display:block;font-weight:400;color:var(--slate)">n=7</small></th></tr>
+    <tr><td>Overall score (1 to 10)</td><td class="n">4.83<small>max 6.70</small></td><td class="n">4.71<small>max 6.50</small></td><td class="n">5.01<small>max 6.70</small></td><td class="n">4.87<small>max 6.50</small></td><td class="n">5.60<small>max 5.60</small></td><td class="n">4.19<small>max 5.80</small></td></tr>
+    <tr><td>Question Importance</td><td class="n">+0.81</td><td class="n">+0.69</td><td class="n">+0.88</td><td class="n">+0.83</td><td class="n">+1.00</td><td class="n">+0.86</td></tr>
+    <tr><td>Originality</td><td class="n">+0.00</td><td class="n">&minus;0.06</td><td class="n">+0.12</td><td class="n">+0.03</td><td class="n">+1.00</td><td class="n">&minus;0.57</td></tr>
+    <tr><td>Writing Clarity</td><td class="n">+0.31</td><td class="n">+0.34</td><td class="n">+0.50</td><td class="n">+0.17</td><td class="n">+0.00</td><td class="n">&minus;0.14</td></tr>
+    <tr><td>Prior Work Context</td><td class="n">&minus;0.06</td><td class="n">&minus;0.06</td><td class="n">&minus;0.09</td><td class="n">+0.00</td><td class="n">+0.00</td><td class="n">&minus;0.14</td></tr>
+    <tr><td>Claims Support</td><td class="n">&minus;0.10</td><td class="n">+0.00</td><td class="n">&minus;0.15</td><td class="n">&minus;0.10</td><td class="n">+0.00</td><td class="n">&minus;0.29</td></tr>
+    <tr><td>Experimental Soundness</td><td class="n">&minus;0.38</td><td class="n">&minus;0.34</td><td class="n">&minus;0.41</td><td class="n">&minus;0.33</td><td class="n">+0.00</td><td class="n">&minus;0.57</td></tr>
+    <tr><td>Value to Community</td><td class="n">&minus;0.02</td><td class="n">&minus;0.09</td><td class="n">+0.06</td><td class="n">+0.03</td><td class="n">+0.00</td><td class="n">&minus;0.29</td></tr>
   </table></div>
-  <div class="scroll"><table>
-    <tr><th>Sub-dimension</th><th>Range across the three leading tools</th><th>Rating counts over 104 papers</th></tr>
-    <tr><td>Question Importance</td><td>0.69 to 0.88</td><td>84 positive, 0 negative</td></tr>
-    <tr><td>Writing Clarity</td><td>0.17 to 0.50</td><td>38 positive</td></tr>
-    <tr><td>Claims Support</td><td>−0.15 to 0.00</td><td>15 positive, 25 negative</td></tr>
-    <tr><td>Experimental Soundness</td><td>−0.41 to −0.33</td><td>0 positive, 39 negative</td></tr>
-    <tr><td>Originality</td><td>near 0</td><td>82 neutral</td></tr>
-    <tr><td>Value to Community</td><td>near 0</td><td>82 neutral</td></tr>
-    <tr><td>Prior Work Context</td><td>near 0</td><td>92 neutral, 3 positive</td></tr>
+  <p class="legend">Sub-dimensions are rated &minus;1, 0 or +1 per paper; the table shows the mean. AI Scientist-v2 and AutoResearchClaw have no reviewable paper and are omitted. Tiny-Scientist has a single paper.</p>
+  <p>Number of papers at each rating, over all 104 reviewed papers:</p>
+  <div class="scroll"><table style="max-width:560px">
+    <tr><th>Sub-dimension</th><th class="n">&minus;1</th><th class="n">0</th><th class="n">+1</th></tr>
+    <tr><td>Question Importance</td><td class="n">0</td><td class="n">20</td><td class="n">84</td></tr>
+    <tr><td>Originality</td><td class="n">11</td><td class="n">82</td><td class="n">11</td></tr>
+    <tr><td>Writing Clarity</td><td class="n">6</td><td class="n">60</td><td class="n">38</td></tr>
+    <tr><td>Prior Work Context</td><td class="n">9</td><td class="n">92</td><td class="n">3</td></tr>
+    <tr><td>Claims Support</td><td class="n">25</td><td class="n">64</td><td class="n">15</td></tr>
+    <tr><td>Experimental Soundness</td><td class="n">39</td><td class="n">65</td><td class="n">0</td></tr>
+    <tr><td>Value to Community</td><td class="n">12</td><td class="n">82</td><td class="n">10</td></tr>
   </table></div>
   <figure style="max-width:460px"><img src="assets/figures/fig4a-apr.png" alt="Figure 3a. APR sub-dimension scores" onerror="this.outerHTML='&lt;div class=&quot;fig&quot;&gt;Figure 3a. APR sub-dimension scores&lt;br&gt;add assets/figures/fig4a-apr.png&lt;/div&gt;'"><figcaption>Figure 3a. APR sub-dimension scores</figcaption></figure>
 
