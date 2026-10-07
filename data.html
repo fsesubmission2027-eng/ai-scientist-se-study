@@ -20,28 +20,26 @@
 ├── integrations/     one launcher per tool, the shared task prompt, token and cost metering
 ├── evaluation/       the evaluation pipeline and the LLM-judge prompts
 ├── docker/           Dockerfiles for the sandbox images
-├── docs/             the 66 candidate tasks with the exclusion criterion for each
 ├── benchmark/
 │   ├── tasks/              one directory per task (66 in total)
 │   ├── selected_tasks.csv  the 34 evaluated tasks
 │   └── shared_datasets/    manifest and upstream READMEs of the third-party datasets
 └── results/
     ├── summary/      one row per run with every metric, plus the analysis scripts
-    ├── evaluations/  the full evaluation report of each run
-    └── artifacts/    what each tool produced: idea, code, results, paper, logs</pre>
+    └── evaluations/  the full evaluation report of each run
 
   <h3>What is released</h3>
   <div class="scroll"><table>
     <tr><th>Item</th><th>Description</th><th>Location</th></tr>
     <tr><td>Task packages</td><td>66 candidate tasks, of which 34 were evaluated. Each has the task specification given to the tools, the sandbox configuration and the source-paper metadata</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/benchmark/tasks">benchmark/tasks</a></td></tr>
-    <tr><td>Task selection</td><td>The 66 candidates with the criterion that excluded each of the 32 dropped tasks</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/blob/main/docs/benchmark_66_tasks.md">docs</a></td></tr>
+    <tr><td>Task selection</td><td>The 34 evaluated tasks. The full list of 66 candidates, with the criterion that excluded each of the 32 dropped tasks, is on the Benchmark page</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/blob/main/benchmark/selected_tasks.csv">selected_tasks.csv</a>, <a href="benchmark.html">Benchmark</a></td></tr>
     <tr><td>Launchers</td><td>One entry point per tool, and the prompt builder that strips task IDs, venue and year before the task reaches a tool</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/integrations">integrations</a></td></tr>
     <tr><td>Evaluation pipeline</td><td>Completeness, idea, experiment, peer review, alignment and literature metrics, including the judge prompts</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/evaluation">evaluation</a></td></tr>
     <tr><td>Per-run metrics</td><td>One row for each of the 238 runs with all metrics</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/blob/main/results/summary/all_runs.csv">all_runs.csv</a></td></tr>
-    <tr><td>Evaluation reports</td><td>238 reports with every sub-score and the judge's rationale</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/results/evaluations">results/evaluations</a></td></tr>
-    <tr><td>Tool outputs</td><td>The files the evaluator read for each run: idea, code, result files, the paper as TeX and PDF, and run logs. Files over 50 MB are omitted</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/results/artifacts">results/artifacts</a></td></tr>
+    <tr><td>Evaluation reports</td><td>238 reports with every sub-score, the judge's rationale, and the relative paths of the files that were scored</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/results/evaluations">results/evaluations</a></td></tr>
     <tr><td>Analysis scripts</td><td>The scripts that aggregate the per-run metrics into the tables</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/results/summary/analysis_scripts">analysis_scripts</a></td></tr>
   </table></div>
+  <p>The raw outputs of the tools (generated ideas, code, result files, papers and run logs) are not redistributed in this package.</p>
   <p>The third-party datasets (about 84 GB) are not redistributed. <code>benchmark/shared_datasets/MANIFEST.csv</code> lists where to obtain each one.</p>
 
   <h3>Tool versions</h3>
@@ -72,13 +70,7 @@ python3 integrations/run_aris_task.py --task-dir $TASK --launch
 # 3. Evaluate the run
 python3 evaluation/run_evaluate.py \
   --run-dir  $TASK/workspace/&lt;tool&gt;_&lt;timestamp&gt; \
-  --task-dir $TASK --axes all
-
-# 4. Re-score a released run without any LLM call
-python3 evaluation/run_evaluate.py \
-  --run-dir  results/artifacts/&lt;task&gt;/&lt;run&gt; \
-  --task-dir benchmark/tasks/&lt;task&gt; \
-  --axes completeness --skip-llm --evals-root /tmp/evals</pre>
+  --task-dir $TASK --axes all</pre>
 </section></main>
 <footer>Companion website of a paper under double-anonymous review.</footer>
 </body>
