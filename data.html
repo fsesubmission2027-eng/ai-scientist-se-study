@@ -12,38 +12,73 @@
 <header class="top"><div class="in"><div class="site">End-to-End AI Scientist Tools in Software Engineering: How Far Are We?</div><h1>Data and code</h1></div></header>
 <nav aria-label="Pages"><div class="in"><a href="index.html">Home</a><a href="definition.html">Definition</a><a href="tool-selection.html">Tool selection</a><a href="benchmark.html">Benchmark</a><a href="evaluation.html">Evaluation</a><a href="rq1.html">RQ1</a><a href="rq2.html">RQ2</a><a href="rq3.html">RQ3</a><a href="data.html" aria-current="page">Data and code</a></div></nav>
 <main class="wrap"><section>
-  <p>Anonymous repository: <a href="#">REPOSITORY_URL</a></p>
-<pre>repo/
-  benchmark/     34 task packages
-  runners/       per-tool launch scripts and Docker configuration
-  evaluation/    metrics, judge prompts, aggregation scripts
-  results/       238 run records and evaluation outputs
-  analysis/      scripts that regenerate every table and figure</pre>
+  <p>All code and data are in one anonymous repository: <a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE">study-of-ai-scientists-in-SE</a>. The results can be inspected in the browser without any setup.</p>
 
-  <h3>Released data</h3>
+  <h3>Repository layout</h3>
+<pre>.
+├── orchestrator/     Docker sandbox and environment preflights
+├── integrations/     one launcher per tool, the shared task prompt, token and cost metering
+├── evaluation/       the evaluation pipeline and the LLM-judge prompts
+├── docker/           Dockerfiles for the sandbox images
+├── docs/             the 66 candidate tasks with the exclusion criterion for each
+├── benchmark/
+│   ├── tasks/              one directory per task (66 in total)
+│   ├── selected_tasks.csv  the 34 evaluated tasks
+│   └── shared_datasets/    manifest and upstream READMEs of the third-party datasets
+└── results/
+    ├── summary/      one row per run with every metric, plus the analysis scripts
+    ├── evaluations/  the full evaluation report of each run
+    └── artifacts/    what each tool produced: idea, code, results, paper, logs</pre>
+
+  <h3>What is released</h3>
   <div class="scroll"><table>
-    <tr><th>Item</th><th>Description</th><th>Link</th></tr>
-    <tr><td>Task packages</td><td>34 self-contained research tasks</td><td><a href="#">link</a></td></tr>
-    <tr><td>Run records</td><td>238 tool-task records with manifests</td><td><a href="#">link</a></td></tr>
-    <tr><td>Generated papers</td><td>All manuscripts the tools produced</td><td><a href="#">link</a></td></tr>
-    <tr><td>APR reviews</td><td>Raw review outputs for 104 papers</td><td><a href="#">link</a></td></tr>
-    <tr><td>Judge outputs</td><td>Raw LLM-judge scores and rationales</td><td><a href="#">link</a></td></tr>
-    <tr><td>Manual inspection notes</td><td>Concealment and failure-mode annotations</td><td><a href="#">link</a></td></tr>
+    <tr><th>Item</th><th>Description</th><th>Location</th></tr>
+    <tr><td>Task packages</td><td>66 candidate tasks, of which 34 were evaluated. Each has the task specification given to the tools, the sandbox configuration and the source-paper metadata</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/benchmark/tasks">benchmark/tasks</a></td></tr>
+    <tr><td>Task selection</td><td>The 66 candidates with the criterion that excluded each of the 32 dropped tasks</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/blob/main/docs/benchmark_66_tasks.md">docs</a></td></tr>
+    <tr><td>Launchers</td><td>One entry point per tool, and the prompt builder that strips task IDs, venue and year before the task reaches a tool</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/integrations">integrations</a></td></tr>
+    <tr><td>Evaluation pipeline</td><td>Completeness, idea, experiment, peer review, alignment and literature metrics, including the judge prompts</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/evaluation">evaluation</a></td></tr>
+    <tr><td>Per-run metrics</td><td>One row for each of the 238 runs with all metrics</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/blob/main/results/summary/all_runs.csv">all_runs.csv</a></td></tr>
+    <tr><td>Evaluation reports</td><td>238 reports with every sub-score and the judge's rationale</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/results/evaluations">results/evaluations</a></td></tr>
+    <tr><td>Tool outputs</td><td>The files the evaluator read for each run: idea, code, result files, the paper as TeX and PDF, and run logs. Files over 50 MB are omitted</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/results/artifacts">results/artifacts</a></td></tr>
+    <tr><td>Analysis scripts</td><td>The scripts that aggregate the per-run metrics into the tables</td><td><a href="https://github.com/fsesubmission2027-eng/study-of-ai-scientists-in-SE/tree/main/results/summary/analysis_scripts">analysis_scripts</a></td></tr>
+  </table></div>
+  <p>The third-party datasets (about 84 GB) are not redistributed. <code>benchmark/shared_datasets/MANIFEST.csv</code> lists where to obtain each one.</p>
+
+  <h3>Tool versions</h3>
+  <p>Each tool is used unmodified. Integration happens only through environment variables, command-line flags and per-run configuration files.</p>
+  <div class="scroll"><table>
+    <tr><th>Tool</th><th>Source</th><th>Version</th></tr>
+    <tr><td>AI Scientist-v2</td><td><a href="https://github.com/SakanaAI/AI-Scientist-v2">SakanaAI/AI-Scientist-v2</a></td><td>commit <code>96bd516</code></td></tr>
+    <tr><td>AI-Researcher</td><td><a href="https://github.com/HKUDS/AI-Researcher">HKUDS/AI-Researcher</a></td><td>commit <code>f9a6f84</code></td></tr>
+    <tr><td>ARIS</td><td><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep">wanshuiyin/Auto-claude-code-research-in-sleep</a></td><td>commit <code>dd1ee32</code></td></tr>
+    <tr><td>AutoResearchClaw</td><td><a href="https://github.com/aiming-lab/AutoResearchClaw">aiming-lab/AutoResearchClaw</a></td><td>commit <code>ea77ec1</code></td></tr>
+    <tr><td>DeepScientist</td><td>npm <code>@researai/deepscientist</code></td><td>1.6.0</td></tr>
+    <tr><td>EvoScientist</td><td>PyPI <code>EvoScientist</code></td><td>0.1.7</td></tr>
+    <tr><td>Tiny-Scientist</td><td>PyPI <code>tiny-scientist</code></td><td>0.1.3</td></tr>
   </table></div>
 
-  <h3>Reproducing the study</h3>
-<pre># 1. Build the sandbox image
-COMMAND
+  <h3>Re-running the study</h3>
+  <p>Requirements: a Linux host with Docker, Python 3.10 or later, and an OpenAI-compatible LLM endpoint. The README has the full instructions.</p>
+<pre># 1. Place the task packages and build the sandbox images
+mkdir -p ~/ai_scientist_inputs
+cp -r benchmark/tasks/* ~/ai_scientist_inputs/
+docker build -f docker/Dockerfile.base -t ai-scientist-base:20260615 docker/
+cp benchmark_credentials.example.yaml benchmark_credentials.yaml   # fill in your keys
 
 # 2. Run one tool on one task
-COMMAND
+TASK=~/ai_scientist_inputs/ASE-2025-004_predicting_recheck_success_in_continuous
+python3 integrations/run_aris_task.py --task-dir $TASK --launch
 
-# 3. Evaluate a run
-COMMAND
+# 3. Evaluate the run
+python3 evaluation/run_evaluate.py \
+  --run-dir  $TASK/workspace/&lt;tool&gt;_&lt;timestamp&gt; \
+  --task-dir $TASK --axes all
 
-# 4. Regenerate tables and figures
-COMMAND</pre>
-  <div class="todo">To add: repository URL, data links, and the four commands.</div>
+# 4. Re-score a released run without any LLM call
+python3 evaluation/run_evaluate.py \
+  --run-dir  results/artifacts/&lt;task&gt;/&lt;run&gt; \
+  --task-dir benchmark/tasks/&lt;task&gt; \
+  --axes completeness --skip-llm --evals-root /tmp/evals</pre>
 </section></main>
 <footer>Companion website of a paper under double-anonymous review.</footer>
 </body>
